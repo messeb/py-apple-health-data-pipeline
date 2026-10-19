@@ -1,0 +1,21 @@
+.github/workflows/ci.yml
+  s_b9faf990dda4aa::t_4d7891811cf9a0 26,40
+.github/dependabot.yml
+  s_b9faf990dda4aa::t_38845b3aa8c02b 1-5,12,26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "692d85dd3b6b23b6a5001c282be6f514ae811a01",
+  "prompts": {},
+  "sessions": {
+    "s_b9faf990dda4aa": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "098b3092-7fa6-455c-9f7c-12a166e1fc52",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Sebastian Messingfeld <sebastian@messeb.com>"
+    }
+  }
+}
