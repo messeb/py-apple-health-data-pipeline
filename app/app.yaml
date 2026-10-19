@@ -1,0 +1,22 @@
+# Databricks App definition. Deploy the app/ folder as the app source.
+# Databricks Apps sets STREAMLIT_SERVER_PORT / STREAMLIT_SERVER_ADDRESS (from
+# DATABRICKS_APP_PORT) for Streamlit apps; the flags below cover the rest.
+command:
+  - streamlit
+  - run
+  - app.py
+  - --server.headless
+  - "true"
+  - --browser.gatherUsageStats
+  - "false"
+
+env:
+  - name: HEALTH_BACKEND
+    value: databricks
+  - name: HEALTH_CATALOG
+    value: workspace
+  - name: HEALTH_SCHEMA
+    value: health
+  # Resolved from the app resource with key "sql-warehouse" (Can use permission).
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse

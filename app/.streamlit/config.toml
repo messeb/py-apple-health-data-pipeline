@@ -1,0 +1,41 @@
+# Theme follows the dataviz reference palette (chart surface, ink, categorical
+# slots). Light and dark are both defined; the viewer's OS/app setting picks one.
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "viewer"
+
+[theme]
+font = "system-ui, -apple-system, 'Segoe UI', sans-serif"
+baseRadius = "0.5rem"
+showWidgetBorder = true
+showSidebarBorder = true
+metricValueFontSize = "1.75rem"
+
+[theme.light]
+primaryColor = "#2a78d6"
+backgroundColor = "#fcfcfb"
+secondaryBackgroundColor = "#f3f2ee"
+textColor = "#0b0b0b"
+borderColor = "#e1e0d9"
+linkColor = "#256abf"
+greenColor = "#006300"
+redColor = "#d03b3b"
+orangeColor = "#c2410c"
+chartCategoricalColors = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#4a3aa7", "#e34948"]
+chartSequentialColors = ["#cde2fb", "#b7d3f6", "#9ec5f4", "#86b6ef", "#6da7ec", "#5598e7", "#3987e5", "#2a78d6", "#1c5cab", "#104281"]
+
+[theme.dark]
+primaryColor = "#3987e5"
+backgroundColor = "#1a1a19"
+secondaryBackgroundColor = "#0d0d0d"
+textColor = "#ffffff"
+borderColor = "#2c2c2a"
+linkColor = "#6da7ec"
+greenColor = "#0ca30c"
+redColor = "#e66767"
+orangeColor = "#ec835a"
+chartCategoricalColors = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181", "#008300", "#9085e9", "#e66767"]
+chartSequentialColors = ["#104281", "#1c5cab", "#2a78d6", "#3987e5", "#5598e7", "#6da7ec", "#86b6ef", "#9ec5f4", "#b7d3f6", "#cde2fb"]

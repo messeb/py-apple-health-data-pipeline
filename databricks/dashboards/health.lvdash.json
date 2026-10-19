@@ -1,0 +1,2496 @@
+{
+  "datasets": [
+    {
+      "name": "recent_workouts",
+      "displayName": "50 Most Recent Workouts",
+      "queryLines": [
+        "SELECT\n",
+        "  local_date,\n",
+        "  activity,\n",
+        "  start_local,\n",
+        "  duration_min,\n",
+        "  distance_km,\n",
+        "  avg_speed_kmh,\n",
+        "  active_kcal,\n",
+        "  hr_avg,\n",
+        "  hr_max,\n",
+        "  elevation_gain_m,\n",
+        "  weather_temp_c\n",
+        "FROM\n",
+        "  gold_workouts\n",
+        "ORDER BY\n",
+        "  start_local DESC\n",
+        "LIMIT 50"
+      ]
+    },
+    {
+      "name": "daily_health",
+      "displayName": "Daily Health Summary",
+      "config": {
+        "version": "1.1",
+        "source": "SELECT local_date, year, month, day_of_week, is_weekend, steps, walk_run_km, cycling_km, active_kcal, basal_kcal, flights_climbed, exercise_min, stand_min, daylight_min, hr_mean, hr_min, hr_max, resting_hr, walking_hr_avg, hrv_sdnn_ms, spo2_pct, respiratory_rate, vo2max, body_mass_kg, bmi, walking_speed_kmh, step_length_cm, walking_asymmetry_pct, double_support_pct, n_workouts, workout_min, workout_kcal, training_load, CAST(move_ring_closed AS INT) AS move_ring_closed, CAST(exercise_ring_closed AS INT) AS exercise_ring_closed, CAST(stand_ring_closed AS INT) AS stand_ring_closed, DATE_TRUNC('month', local_date) AS year_month, AVG(steps) OVER (ORDER BY local_date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS steps_7d, AVG(steps) OVER (ORDER BY local_date ROWS BETWEEN 27 PRECEDING AND CURRENT ROW) AS steps_28d, AVG(resting_hr) OVER (ORDER BY local_date ROWS BETWEEN 27 PRECEDING AND CURRENT ROW) AS resting_hr_28d, AVG(hrv_sdnn_ms) OVER (ORDER BY local_date ROWS BETWEEN 27 PRECEDING AND CURRENT ROW) AS hrv_28d, AVG(walking_speed_kmh) OVER (ORDER BY local_date ROWS BETWEEN 27 PRECEDING AND CURRENT ROW) AS walking_speed_28d, AVG(step_length_cm) OVER (ORDER BY local_date ROWS BETWEEN 27 PRECEDING AND CURRENT ROW) AS step_length_28d, AVG(walking_asymmetry_pct) OVER (ORDER BY local_date ROWS BETWEEN 27 PRECEDING AND CURRENT ROW) AS asymmetry_28d, AVG(body_mass_kg) OVER (ORDER BY local_date ROWS BETWEEN 27 PRECEDING AND CURRENT ROW) AS body_mass_28d, AVG(bmi) OVER (ORDER BY local_date ROWS BETWEEN 27 PRECEDING AND CURRENT ROW) AS bmi_28d FROM gold_daily_summary\n",
+        "dimensions": [
+          {
+            "name": "local_date",
+            "expr": "local_date"
+          },
+          {
+            "name": "year",
+            "expr": "year"
+          },
+          {
+            "name": "month",
+            "expr": "month"
+          },
+          {
+            "name": "day_of_week",
+            "expr": "day_of_week"
+          },
+          {
+            "name": "is_weekend",
+            "expr": "is_weekend"
+          },
+          {
+            "name": "year_month",
+            "expr": "year_month"
+          }
+        ],
+        "measures": [
+          {
+            "name": "total_steps",
+            "expr": "SUM(steps)"
+          },
+          {
+            "name": "avg_steps",
+            "expr": "AVG(steps)"
+          },
+          {
+            "name": "steps_7d",
+            "expr": "AVG(steps_7d)"
+          },
+          {
+            "name": "steps_28d",
+            "expr": "AVG(steps_28d)"
+          },
+          {
+            "name": "total_walk_run_km",
+            "expr": "SUM(walk_run_km)"
+          },
+          {
+            "name": "total_cycling_km",
+            "expr": "SUM(cycling_km)"
+          },
+          {
+            "name": "avg_resting_hr",
+            "expr": "AVG(resting_hr)"
+          },
+          {
+            "name": "resting_hr_28d",
+            "expr": "AVG(resting_hr_28d)"
+          },
+          {
+            "name": "avg_hrv",
+            "expr": "AVG(hrv_sdnn_ms)"
+          },
+          {
+            "name": "hrv_28d",
+            "expr": "AVG(hrv_28d)"
+          },
+          {
+            "name": "avg_vo2max",
+            "expr": "AVG(vo2max)"
+          },
+          {
+            "name": "avg_body_mass",
+            "expr": "AVG(body_mass_kg)"
+          },
+          {
+            "name": "avg_bmi",
+            "expr": "AVG(bmi)"
+          },
+          {
+            "name": "avg_walking_speed",
+            "expr": "AVG(walking_speed_kmh)"
+          },
+          {
+            "name": "walking_speed_28d",
+            "expr": "AVG(walking_speed_28d)"
+          },
+          {
+            "name": "avg_step_length",
+            "expr": "AVG(step_length_cm)"
+          },
+          {
+            "name": "step_length_28d",
+            "expr": "AVG(step_length_28d)"
+          },
+          {
+            "name": "avg_asymmetry",
+            "expr": "AVG(walking_asymmetry_pct)"
+          },
+          {
+            "name": "asymmetry_28d",
+            "expr": "AVG(asymmetry_28d)"
+          },
+          {
+            "name": "total_workouts",
+            "expr": "SUM(n_workouts)"
+          },
+          {
+            "name": "total_workout_min",
+            "expr": "SUM(workout_min)"
+          },
+          {
+            "name": "total_active_kcal",
+            "expr": "SUM(active_kcal)"
+          },
+          {
+            "name": "total_exercise_min",
+            "expr": "SUM(exercise_min)"
+          },
+          {
+            "name": "pct_move_ring",
+            "expr": "SUM(move_ring_closed) * 1.0 / COUNT(*)",
+            "format": {
+              "type": "percentage",
+              "decimalPlaces": {
+                "type": "exact",
+                "places": 1.0
+              }
+            }
+          },
+          {
+            "name": "pct_exercise_ring",
+            "expr": "SUM(exercise_ring_closed) * 1.0 / COUNT(*)",
+            "format": {
+              "type": "percentage",
+              "decimalPlaces": {
+                "type": "exact",
+                "places": 1.0
+              }
+            }
+          },
+          {
+            "name": "pct_stand_ring",
+            "expr": "SUM(stand_ring_closed) * 1.0 / COUNT(*)",
+            "format": {
+              "type": "percentage",
+              "decimalPlaces": {
+                "type": "exact",
+                "places": 1.0
+              }
+            }
+          },
+          {
+            "name": "n_days",
+            "expr": "COUNT(*)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "hourly_steps",
+      "displayName": "Hourly Steps",
+      "config": {
+        "version": "1.1",
+        "source": "SELECT local_date, local_hour, DAYOFWEEK(local_date) AS day_of_week, value FROM gold_hourly_activity WHERE metric = 'StepCount'\n",
+        "dimensions": [
+          {
+            "name": "local_date",
+            "expr": "local_date"
+          },
+          {
+            "name": "local_hour",
+            "expr": "local_hour"
+          },
+          {
+            "name": "day_of_week",
+            "expr": "day_of_week"
+          }
+        ],
+        "measures": [
+          {
+            "name": "avg_steps",
+            "expr": "AVG(value)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "hourly_hr",
+      "displayName": "Hourly Heart Rate",
+      "config": {
+        "version": "1.1",
+        "source": "SELECT local_date, local_hour, DATE_TRUNC('month', local_date) AS year_month, hr_mean FROM gold_hourly_heart_rate\n",
+        "dimensions": [
+          {
+            "name": "local_date",
+            "expr": "local_date"
+          },
+          {
+            "name": "local_hour",
+            "expr": "local_hour"
+          },
+          {
+            "name": "year_month",
+            "expr": "year_month"
+          }
+        ],
+        "measures": [
+          {
+            "name": "avg_hr",
+            "expr": "AVG(hr_mean)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "workouts",
+      "displayName": "Workouts",
+      "config": {
+        "version": "1.1",
+        "source": "gold_workouts",
+        "dimensions": [
+          {
+            "name": "activity",
+            "expr": "activity"
+          },
+          {
+            "name": "local_date",
+            "expr": "local_date"
+          },
+          {
+            "name": "start_local",
+            "expr": "start_local"
+          },
+          {
+            "name": "year_month",
+            "expr": "DATE_TRUNC('month', local_date)"
+          }
+        ],
+        "measures": [
+          {
+            "name": "n_workouts",
+            "expr": "COUNT(*)"
+          },
+          {
+            "name": "total_duration_min",
+            "expr": "SUM(duration_min)"
+          },
+          {
+            "name": "total_duration_hrs",
+            "expr": "SUM(duration_min) / 60.0"
+          },
+          {
+            "name": "total_distance_km",
+            "expr": "SUM(distance_km)"
+          },
+          {
+            "name": "total_active_kcal",
+            "expr": "SUM(active_kcal)"
+          },
+          {
+            "name": "avg_speed",
+            "expr": "AVG(avg_speed_kmh)"
+          },
+          {
+            "name": "avg_hr",
+            "expr": "AVG(hr_avg)"
+          },
+          {
+            "name": "avg_max_hr",
+            "expr": "AVG(hr_max)"
+          },
+          {
+            "name": "avg_elevation_gain",
+            "expr": "AVG(elevation_gain_m)"
+          },
+          {
+            "name": "avg_weather_temp",
+            "expr": "AVG(weather_temp_c)"
+          },
+          {
+            "name": "total_workout_min",
+            "expr": "SUM(duration_min)"
+          }
+        ]
+      }
+    },
+    {
+      "name": "weekly_health",
+      "displayName": "Weekly Health Summary",
+      "config": {
+        "version": "1.1",
+        "source": "gold_weekly_summary",
+        "dimensions": [
+          {
+            "name": "week_start",
+            "expr": "week_start"
+          },
+          {
+            "name": "year",
+            "expr": "YEAR(week_start)"
+          }
+        ],
+        "measures": [
+          {
+            "name": "avg_steps",
+            "expr": "AVG(avg_steps)"
+          },
+          {
+            "name": "total_walk_run_km",
+            "expr": "SUM(walk_run_km)"
+          },
+          {
+            "name": "total_cycling_km",
+            "expr": "SUM(cycling_km)"
+          },
+          {
+            "name": "avg_exercise_min",
+            "expr": "AVG(exercise_min)"
+          },
+          {
+            "name": "total_n_workouts",
+            "expr": "SUM(n_workouts)"
+          },
+          {
+            "name": "total_workout_min",
+            "expr": "SUM(workout_min)"
+          },
+          {
+            "name": "total_training_load",
+            "expr": "SUM(training_load)"
+          },
+          {
+            "name": "avg_resting_hr",
+            "expr": "AVG(avg_resting_hr)"
+          },
+          {
+            "name": "avg_hrv",
+            "expr": "AVG(avg_hrv_sdnn_ms)"
+          },
+          {
+            "name": "avg_vo2max",
+            "expr": "AVG(avg_vo2max)"
+          },
+          {
+            "name": "avg_body_mass",
+            "expr": "AVG(avg_body_mass_kg)"
+          },
+          {
+            "name": "total_move_rings",
+            "expr": "SUM(move_rings_closed)"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "59c9caee",
+      "displayName": "Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "avg_steps_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_steps)",
+                      "expression": "MEASURE(`avg_steps`)"
+                    }
+                  ],
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "DESC",
+                      "expression": "`local_date`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Avg Daily Steps",
+                "description": "Average steps per day in the selected period."
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(avg_steps)"
+                },
+                "period": {
+                  "fieldName": "local_date"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_resting_hr_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_resting_hr)",
+                      "expression": "MEASURE(`avg_resting_hr`)"
+                    }
+                  ],
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "DESC",
+                      "expression": "`local_date`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Avg Resting HR",
+                "description": "Average resting heart rate in the selected period."
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(avg_resting_hr)"
+                },
+                "period": {
+                  "fieldName": "local_date"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_hrv_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_hrv)",
+                      "expression": "MEASURE(`avg_hrv`)"
+                    }
+                  ],
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "DESC",
+                      "expression": "`local_date`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Avg HRV (ms)",
+                "description": "Average heart rate variability (SDNN) in the selected period."
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(avg_hrv)"
+                },
+                "period": {
+                  "fieldName": "local_date"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "weekly_hr_hrv",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weekly_health",
+                  "fields": [
+                    {
+                      "name": "week_start",
+                      "expression": "`week_start`"
+                    },
+                    {
+                      "name": "measure(avg_resting_hr)",
+                      "expression": "MEASURE(`avg_resting_hr`)"
+                    },
+                    {
+                      "name": "measure(avg_hrv)",
+                      "expression": "MEASURE(`avg_hrv`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Weekly Resting HR & HRV",
+                "description": "Resting heart rate and HRV (SDNN) per ISO week across all years."
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "week_start",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "primary": {
+                    "fields": [
+                      {
+                        "fieldName": "measure(avg_resting_hr)",
+                        "displayName": "Resting HR (bpm)"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    }
+                  },
+                  "secondary": {
+                    "fields": [
+                      {
+                        "fieldName": "measure(avg_hrv)",
+                        "displayName": "HRV SDNN (ms)"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "total_workouts_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(total_workouts)",
+                      "expression": "MEASURE(`total_workouts`)"
+                    }
+                  ],
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "DESC",
+                      "expression": "`local_date`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Total Workouts",
+                "description": "Total number of workouts in the selected period."
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(total_workouts)"
+                },
+                "period": {
+                  "fieldName": "local_date"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "yearly_steps_cycling",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "year",
+                      "expression": "`year`"
+                    },
+                    {
+                      "name": "measure(total_steps)",
+                      "expression": "MEASURE(`total_steps`)"
+                    },
+                    {
+                      "name": "measure(total_cycling_km)",
+                      "expression": "MEASURE(`total_cycling_km`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Steps & Cycling per Year",
+                "description": "Total steps and cycling distance per year."
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "year",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "primary": {
+                    "fields": [
+                      {
+                        "fieldName": "measure(total_steps)",
+                        "displayName": "Total Steps"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    }
+                  },
+                  "secondary": {
+                    "fields": [
+                      {
+                        "fieldName": "measure(total_cycling_km)",
+                        "displayName": "Cycling (km)"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 2,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "total_cycling_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(total_cycling_km)",
+                      "expression": "MEASURE(`total_cycling_km`)"
+                    }
+                  ],
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "DESC",
+                      "expression": "`local_date`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Total Cycling (km)",
+                "description": "Total cycling distance in the selected period."
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(total_cycling_km)"
+                },
+                "period": {
+                  "fieldName": "local_date"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "move_ring_counter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(pct_move_ring)",
+                      "expression": "MEASURE(`pct_move_ring`)"
+                    }
+                  ],
+                  "disaggregated": false,
+                  "orders": [
+                    {
+                      "direction": "DESC",
+                      "expression": "`local_date`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Move Ring Closed %",
+                "description": "Percentage of days with the move ring closed."
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "measure(pct_move_ring)"
+                },
+                "period": {
+                  "fieldName": "local_date"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 10,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "activity",
+      "displayName": "Activity",
+      "layout": [
+        {
+          "widget": {
+            "name": "daily_steps",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_steps)",
+                      "expression": "MEASURE(`avg_steps`)"
+                    },
+                    {
+                      "name": "measure(steps_7d)",
+                      "expression": "MEASURE(`steps_7d`)"
+                    },
+                    {
+                      "name": "measure(steps_28d)",
+                      "expression": "MEASURE(`steps_28d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Daily Steps with Rolling Averages",
+                "description": "Daily step count with 7-day and 28-day rolling averages."
+              },
+              "version": 3,
+              "mark": {
+                "linePatterns": [
+                  "solid",
+                  "dashed",
+                  "dashed"
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(avg_steps)",
+                      "displayName": "Daily Steps"
+                    },
+                    {
+                      "fieldName": "measure(steps_7d)",
+                      "displayName": "7-day Avg"
+                    },
+                    {
+                      "fieldName": "measure(steps_28d)",
+                      "displayName": "28-day Avg"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "steps_heatmap",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "hourly_steps",
+                  "fields": [
+                    {
+                      "name": "measure(avg_steps)",
+                      "expression": "MEASURE(`avg_steps`)"
+                    },
+                    {
+                      "name": "local_hour",
+                      "expression": "`local_hour`"
+                    },
+                    {
+                      "name": "day_of_week",
+                      "expression": "`day_of_week`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Steps by Hour & Weekday",
+                "description": "Average steps by hour of day and day of week (1=Sun…7=Sat)."
+              },
+              "version": 3,
+              "widgetType": "heatmap",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_hour",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "day_of_week",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "measure(avg_steps)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "avg_steps_weekday",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "day_of_week",
+                      "expression": "`day_of_week`"
+                    },
+                    {
+                      "name": "measure(avg_steps)",
+                      "expression": "MEASURE(`avg_steps`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Avg Steps per Weekday",
+                "description": "Average daily steps by day of week (1=Sun…7=Sat)."
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "day_of_week",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(avg_steps)",
+                  "displayName": "Avg Steps",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "monthly_walk_cycling",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "year_month",
+                      "expression": "`year_month`"
+                    },
+                    {
+                      "name": "measure(total_walk_run_km)",
+                      "expression": "MEASURE(`total_walk_run_km`)"
+                    },
+                    {
+                      "name": "measure(total_cycling_km)",
+                      "expression": "MEASURE(`total_cycling_km`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Walk/Run & Cycling per Month",
+                "description": "Stacked walking/running and cycling distance per month."
+              },
+              "version": 3,
+              "mark": {
+                "layout": "stack"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "year_month",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(total_walk_run_km)",
+                      "displayName": "Walk/Run (km)"
+                    },
+                    {
+                      "fieldName": "measure(total_cycling_km)",
+                      "displayName": "Cycling (km)"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 10,
+            "width": 6,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "ring_closure",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "year_month",
+                      "expression": "`year_month`"
+                    },
+                    {
+                      "name": "measure(pct_move_ring)",
+                      "expression": "MEASURE(`pct_move_ring`)"
+                    },
+                    {
+                      "name": "measure(pct_exercise_ring)",
+                      "expression": "MEASURE(`pct_exercise_ring`)"
+                    },
+                    {
+                      "name": "measure(pct_stand_ring)",
+                      "expression": "MEASURE(`pct_stand_ring`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Ring Closure Rate per Month",
+                "description": "Percentage of days with move, exercise, and stand rings closed per month."
+              },
+              "version": 3,
+              "mark": {
+                "layout": "group"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "year_month",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(pct_move_ring)",
+                      "displayName": "Move %"
+                    },
+                    {
+                      "fieldName": "measure(pct_exercise_ring)",
+                      "displayName": "Exercise %"
+                    },
+                    {
+                      "fieldName": "measure(pct_stand_ring)",
+                      "displayName": "Stand %"
+                    }
+                  ],
+                  "format": {
+                    "type": "number-percent"
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 10,
+            "width": 6,
+            "height": 4
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "heart_fitness",
+      "displayName": "Heart & Fitness",
+      "layout": [
+        {
+          "widget": {
+            "name": "resting_hr",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_resting_hr)",
+                      "expression": "MEASURE(`avg_resting_hr`)"
+                    },
+                    {
+                      "name": "measure(resting_hr_28d)",
+                      "expression": "MEASURE(`resting_hr_28d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Resting HR with 28-day Average",
+                "description": "Daily resting heart rate with a 28-day rolling average."
+              },
+              "version": 3,
+              "mark": {
+                "linePatterns": [
+                  "solid",
+                  "dashed"
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(avg_resting_hr)",
+                      "displayName": "Resting HR (bpm)"
+                    },
+                    {
+                      "fieldName": "measure(resting_hr_28d)",
+                      "displayName": "28-day Avg"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "hrv",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_hrv)",
+                      "expression": "MEASURE(`avg_hrv`)"
+                    },
+                    {
+                      "name": "measure(hrv_28d)",
+                      "expression": "MEASURE(`hrv_28d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "HRV with 28-day Average",
+                "description": "Daily heart rate variability (SDNN) with a 28-day rolling average."
+              },
+              "version": 3,
+              "mark": {
+                "linePatterns": [
+                  "solid",
+                  "dashed"
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(avg_hrv)",
+                      "displayName": "HRV SDNN (ms)"
+                    },
+                    {
+                      "fieldName": "measure(hrv_28d)",
+                      "displayName": "28-day Avg"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "vo2max",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "year_month",
+                      "expression": "`year_month`"
+                    },
+                    {
+                      "name": "measure(avg_vo2max)",
+                      "expression": "MEASURE(`avg_vo2max`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "VO2max Over Time",
+                "description": "Monthly average VO2max over time."
+              },
+              "version": 3,
+              "mark": {
+                "marker": {
+                  "shape": "circle"
+                }
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "year_month",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(avg_vo2max)",
+                  "displayName": "VO2max (ml/kg/min)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "hr_heatmap",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "hourly_hr",
+                  "fields": [
+                    {
+                      "name": "measure(avg_hr)",
+                      "expression": "MEASURE(`avg_hr`)"
+                    },
+                    {
+                      "name": "local_hour",
+                      "expression": "`local_hour`"
+                    },
+                    {
+                      "name": "year_month",
+                      "expression": "`year_month`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Heart Rate by Hour & Month",
+                "description": "Average heart rate by hour of day and month."
+              },
+              "version": 3,
+              "widgetType": "heatmap",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_hour",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "year_month",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "color": {
+                  "fieldName": "measure(avg_hr)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "training_load_scatter",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "weekly_health",
+                  "fields": [
+                    {
+                      "name": "year",
+                      "expression": "`year`"
+                    },
+                    {
+                      "name": "measure(total_training_load)",
+                      "expression": "MEASURE(`total_training_load`)"
+                    },
+                    {
+                      "name": "measure(avg_resting_hr)",
+                      "expression": "MEASURE(`avg_resting_hr`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Training Load vs Resting HR",
+                "description": "Weekly training load vs average resting heart rate, coloured by year."
+              },
+              "version": 3,
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "measure(total_training_load)",
+                  "displayName": "Training Load",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(avg_resting_hr)",
+                  "displayName": "Resting HR (bpm)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "year",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 12,
+            "width": 12,
+            "height": 4
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "workouts_page",
+      "displayName": "Workouts",
+      "layout": [
+        {
+          "widget": {
+            "name": "activity_filter",
+            "queries": [
+              {
+                "name": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3ea21e0aaca2bdf4d4136684_activity",
+                "query": {
+                  "datasetName": "workouts",
+                  "fields": [
+                    {
+                      "name": "activity",
+                      "expression": "`activity`"
+                    },
+                    {
+                      "name": "activity_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Activity Filter",
+                "description": "Filter workout widgets by activity type."
+              },
+              "widgetType": "filter-multi-select",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "activity",
+                    "queryName": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3ea21e0aaca2bdf4d4136684_activity"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "recent_workouts_table",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "recent_workouts",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "activity",
+                      "expression": "`activity`"
+                    },
+                    {
+                      "name": "duration_min",
+                      "expression": "`duration_min`"
+                    },
+                    {
+                      "name": "distance_km",
+                      "expression": "`distance_km`"
+                    },
+                    {
+                      "name": "avg_speed_kmh",
+                      "expression": "`avg_speed_kmh`"
+                    },
+                    {
+                      "name": "active_kcal",
+                      "expression": "`active_kcal`"
+                    },
+                    {
+                      "name": "hr_avg",
+                      "expression": "`hr_avg`"
+                    },
+                    {
+                      "name": "hr_max",
+                      "expression": "`hr_max`"
+                    },
+                    {
+                      "name": "elevation_gain_m",
+                      "expression": "`elevation_gain_m`"
+                    },
+                    {
+                      "name": "weather_temp_c",
+                      "expression": "`weather_temp_c`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": "50 Most Recent Workouts"
+              },
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "local_date"
+                  },
+                  {
+                    "fieldName": "activity"
+                  },
+                  {
+                    "fieldName": "duration_min"
+                  },
+                  {
+                    "fieldName": "distance_km"
+                  },
+                  {
+                    "fieldName": "avg_speed_kmh"
+                  },
+                  {
+                    "fieldName": "active_kcal"
+                  },
+                  {
+                    "fieldName": "hr_avg"
+                  },
+                  {
+                    "fieldName": "hr_max"
+                  },
+                  {
+                    "fieldName": "elevation_gain_m"
+                  },
+                  {
+                    "fieldName": "weather_temp_c"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 8,
+            "width": 6,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "workouts_per_activity",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "workouts",
+                  "fields": [
+                    {
+                      "name": "activity",
+                      "expression": "`activity`"
+                    },
+                    {
+                      "name": "measure(n_workouts)",
+                      "expression": "MEASURE(`n_workouts`)"
+                    },
+                    {
+                      "name": "measure(total_duration_hrs)",
+                      "expression": "MEASURE(`total_duration_hrs`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Workouts & Hours per Activity",
+                "description": "Number of workouts and total hours per activity type."
+              },
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "activity",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "primary": {
+                    "fields": [
+                      {
+                        "fieldName": "measure(n_workouts)",
+                        "displayName": "Workouts"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    }
+                  },
+                  "secondary": {
+                    "fields": [
+                      {
+                        "fieldName": "measure(total_duration_hrs)",
+                        "displayName": "Total Hours"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "duration_vs_kcal",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "workouts",
+                  "fields": [
+                    {
+                      "name": "activity",
+                      "expression": "`activity`"
+                    },
+                    {
+                      "name": "measure(total_duration_min)",
+                      "expression": "MEASURE(`total_duration_min`)"
+                    },
+                    {
+                      "name": "measure(total_active_kcal)",
+                      "expression": "MEASURE(`total_active_kcal`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Duration vs Calories",
+                "description": "Workout duration vs active calories, coloured by activity."
+              },
+              "version": 3,
+              "widgetType": "scatter",
+              "encodings": {
+                "x": {
+                  "fieldName": "measure(total_duration_min)",
+                  "displayName": "Duration (min)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(total_active_kcal)",
+                  "displayName": "Active kcal",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "activity",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 2,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "monthly_workout_min",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "workouts",
+                  "fields": [
+                    {
+                      "name": "activity",
+                      "expression": "`activity`"
+                    },
+                    {
+                      "name": "year_month",
+                      "expression": "`year_month`"
+                    },
+                    {
+                      "name": "measure(total_workout_min)",
+                      "expression": "MEASURE(`total_workout_min`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Workout Minutes per Month",
+                "description": "Total workout minutes per month, stacked by activity."
+              },
+              "version": 3,
+              "mark": {
+                "layout": "stack"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "year_month",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "measure(total_workout_min)",
+                  "displayName": "Workout Minutes",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "activity",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 8,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "body_gait",
+      "displayName": "Body & Gait",
+      "layout": [
+        {
+          "widget": {
+            "name": "body_mass_bmi",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_body_mass)",
+                      "expression": "MEASURE(`avg_body_mass`)"
+                    },
+                    {
+                      "name": "measure(avg_bmi)",
+                      "expression": "MEASURE(`avg_bmi`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Body Mass & BMI Over Time",
+                "description": "Body mass and BMI over time (only days with a measurement)."
+              },
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "primary": {
+                    "fields": [
+                      {
+                        "fieldName": "measure(avg_body_mass)",
+                        "displayName": "Body Mass (kg)"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    }
+                  },
+                  "secondary": {
+                    "fields": [
+                      {
+                        "fieldName": "measure(avg_bmi)",
+                        "displayName": "BMI"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    }
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "walking_speed",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_walking_speed)",
+                      "expression": "MEASURE(`avg_walking_speed`)"
+                    },
+                    {
+                      "name": "measure(walking_speed_28d)",
+                      "expression": "MEASURE(`walking_speed_28d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Walking Speed with 28-day Avg",
+                "description": "Walking speed with a 28-day rolling average."
+              },
+              "version": 3,
+              "mark": {
+                "linePatterns": [
+                  "solid",
+                  "dashed"
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(avg_walking_speed)",
+                      "displayName": "Walking Speed (km/h)"
+                    },
+                    {
+                      "fieldName": "measure(walking_speed_28d)",
+                      "displayName": "28-day Avg"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "step_length",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_step_length)",
+                      "expression": "MEASURE(`avg_step_length`)"
+                    },
+                    {
+                      "name": "measure(step_length_28d)",
+                      "expression": "MEASURE(`step_length_28d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Step Length with 28-day Avg",
+                "description": "Step length with a 28-day rolling average."
+              },
+              "version": 3,
+              "mark": {
+                "linePatterns": [
+                  "solid",
+                  "dashed"
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(avg_step_length)",
+                      "displayName": "Step Length (cm)"
+                    },
+                    {
+                      "fieldName": "measure(step_length_28d)",
+                      "displayName": "28-day Avg"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "walking_asymmetry",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "measure(avg_asymmetry)",
+                      "expression": "MEASURE(`avg_asymmetry`)"
+                    },
+                    {
+                      "name": "measure(asymmetry_28d)",
+                      "expression": "MEASURE(`asymmetry_28d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Walking Asymmetry with 28-day Avg",
+                "description": "Walking asymmetry percentage with a 28-day rolling average."
+              },
+              "version": 3,
+              "mark": {
+                "linePatterns": [
+                  "solid",
+                  "dashed"
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "local_date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fields": [
+                    {
+                      "fieldName": "measure(avg_asymmetry)",
+                      "displayName": "Walking Asymmetry (%)"
+                    },
+                    {
+                      "fieldName": "measure(asymmetry_28d)",
+                      "displayName": "28-day Avg"
+                    }
+                  ],
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "global_filters",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "date_range",
+            "queries": [
+              {
+                "name": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3e0c1018997864461298a41e_local_date",
+                "query": {
+                  "datasetName": "daily_health",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "local_date_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3ecb1d129e24629bfbfa0c32_week_start",
+                "query": {
+                  "datasetName": "weekly_health",
+                  "fields": [
+                    {
+                      "name": "week_start",
+                      "expression": "`week_start`"
+                    },
+                    {
+                      "name": "week_start_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3ea21e0aaca2bdf4d4136684_local_date",
+                "query": {
+                  "datasetName": "workouts",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "local_date_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3e731f8abd46496bef984f6e_local_date",
+                "query": {
+                  "datasetName": "hourly_hr",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "local_date_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3e491602b51be10f26f6916a_local_date",
+                "query": {
+                  "datasetName": "hourly_steps",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "local_date_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              },
+              {
+                "name": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3d1218d79fa31558dedca20d_local_date",
+                "query": {
+                  "datasetName": "recent_workouts",
+                  "fields": [
+                    {
+                      "name": "local_date",
+                      "expression": "`local_date`"
+                    },
+                    {
+                      "name": "local_date_associativity",
+                      "expression": "COUNT_IF(`associative_filter_predicate_group`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "Date Range",
+                "description": "Global date range filter for all pages."
+              },
+              "widgetType": "filter-date-range-picker",
+              "encodings": {
+                "fields": [
+                  {
+                    "fieldName": "local_date",
+                    "queryName": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3e0c1018997864461298a41e_local_date"
+                  },
+                  {
+                    "fieldName": "week_start",
+                    "queryName": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3ecb1d129e24629bfbfa0c32_week_start"
+                  },
+                  {
+                    "fieldName": "local_date",
+                    "queryName": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3ea21e0aaca2bdf4d4136684_local_date"
+                  },
+                  {
+                    "fieldName": "local_date",
+                    "queryName": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3e731f8abd46496bef984f6e_local_date"
+                  },
+                  {
+                    "fieldName": "local_date",
+                    "queryName": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3e491602b51be10f26f6916a_local_date"
+                  },
+                  {
+                    "fieldName": "local_date",
+                    "queryName": "dashboards/01f1cb2cafb21a4bb79107b540aca169/datasets/01f1cb2d3d1218d79fa31558dedca20d_local_date"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 4,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}

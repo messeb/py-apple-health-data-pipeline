@@ -1,0 +1,40 @@
+# One weekly PR for everything: Python (pyproject.toml), the Databricks App (app/requirements.txt)
+# and GitHub Actions all go into the multi-ecosystem group "all".
+# Security updates are a separate Dependabot mechanism and still arrive as their own PRs.
+version: 2
+
+multi-ecosystem-groups:
+  all:
+    schedule:
+      interval: weekly
+    labels: [dependencies]
+
+updates:
+  - package-ecosystem: pip
+    directory: /
+    patterns: ["*"]
+    multi-ecosystem-group: all
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      # The Databricks Apps runtime and this project are Python 3.11; numpy 2.5+ needs 3.12.
+      - dependency-name: numpy
+        versions: [">=2.5"]
+
+  # The Databricks App installs from app/requirements.txt (Python 3.11 runtime).
+  - package-ecosystem: pip
+    directory: /app
+    patterns: ["*"]
+    multi-ecosystem-group: all
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      - dependency-name: numpy
+        versions: [">=2.5"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    patterns: ["*"]
+    multi-ecosystem-group: all
+    commit-message:
+      prefix: "chore(deps)"

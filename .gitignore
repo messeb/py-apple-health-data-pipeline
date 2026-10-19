@@ -1,0 +1,71 @@
+# ---------------------------------------------------------------------------
+# Personal health data - NEVER commit. scripts/check_no_health_data.py enforces
+# this in pre-commit and CI as a second line of defence.
+# ---------------------------------------------------------------------------
+apple_health_export/
+export.zip
+*.zip
+/export.xml
+/export_cda.xml
+/*.xml
+electrocardiograms/
+workout-routes/
+clinical-records/
+data/
+sample_data/
+*.parquet
+*.duckdb
+*.duckdb.wal
+*.gpx
+!tests/fixtures/**/*.gpx
+
+# Generated, owner-specific ML outputs
+ml/reports/
+ml/artifacts/
+ml/checkpoints/
+mlruns/
+
+# Model / tool caches
+hf_cache/
+.cache/
+
+# Databricks CLI state (contains the workspace host and user)
+.databricks/
+.databrickscfg
+
+# Secrets and your personal guard denylist (see scripts/check_no_health_data.py)
+.privacy-denylist
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+**/.streamlit/secrets.toml
+# The Streamlit theme is shared config, keep it (the repo-root .streamlit/config.toml is a symlink to it)
+!app/.streamlit/config.toml
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+.ipynb_checkpoints/
+spark-warehouse/
+metastore_db/
+derby.log
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~

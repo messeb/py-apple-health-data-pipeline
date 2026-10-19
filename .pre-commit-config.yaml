@@ -1,0 +1,38 @@
+# Install once with `.venv/bin/pre-commit install`; run on everything with
+# `.venv/bin/pre-commit run --all-files`. CI runs the same hooks.
+default_install_hook_types: [pre-commit]
+exclude: ^(apple_health_export|data|sample_data|hf_cache|\.cache|\.databricks)/
+
+repos:
+  # Never let personal health data or workspace details into a commit. Stdlib only, no install.
+  - repo: local
+    hooks:
+      - id: no-health-data
+        name: no Apple Health data, workspace hosts or tokens
+        entry: python scripts/check_no_health_data.py
+        language: python
+        types: [file]
+        require_serial: true
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=2000]
+      - id: detect-private-key
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-toml
+      - id: check-symlinks
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.1
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format

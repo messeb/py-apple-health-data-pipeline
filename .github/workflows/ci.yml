@@ -1,0 +1,50 @@
+# Small and cheap on purpose: lint plus the fast unit tests (~10 s, core deps only, no torch,
+# Spark or Streamlit). The heavier suites (Streamlit app, ML, Spark parity) run locally with
+# `make test` and `make test-spark`. Everything uses the synthetic sample export; CI never
+# needs or sees real health data.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.0  # no moving major tags since v8
+      - name: ruff
+        # Same ruff version as .pre-commit-config.yaml.
+        run: uvx ruff@0.17.1 check --output-format=github .
+      - name: ruff format
+        run: uvx ruff@0.17.1 format --check .
+      - name: privacy guard (no health data, hosts or tokens in the repo)
+        run: python3 scripts/check_no_health_data.py
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.0  # no moving major tags since v8
+        with:
+          enable-cache: true
+          cache-dependency-glob: pyproject.toml
+          python-version: "3.11"
+      - name: install (core + test deps only)
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[dev]"
+      - name: pytest (fast suite)
+        run: make test-fast PY=.venv/bin/python

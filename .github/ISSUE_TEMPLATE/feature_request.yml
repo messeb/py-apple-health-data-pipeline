@@ -1,0 +1,46 @@
+name: Feature request
+description: Suggest a metric, chart, model or improvement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For open questions or ideas that are not yet concrete, start a Discussion instead.
+        Please don't include personal health data.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What do you want to find out or do that is hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: For example, a new HealthKit type (give the identifier, e.g. HKQuantityTypeIdentifierTimeInDaylight), a gold table column, an app page, a Lakeview dashboard change or an ML experiment.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      multiple: true
+      options:
+        - Parsing / bronze
+        - Silver / gold tables
+        - Streamlit app
+        - Lakeview dashboard
+        - Databricks
+        - ML
+        - Docs / tooling
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I would like to implement this myself (see CONTRIBUTING.md).

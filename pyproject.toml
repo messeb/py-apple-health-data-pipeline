@@ -1,0 +1,106 @@
+[project]
+name = "apple-health-data-pipeline"
+version = "0.1.0"
+description = "Turn your Apple Health export into a bronze/silver/gold lakehouse (DuckDB or Databricks), a Streamlit app and PyTorch ML experiments"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "messeb" }]
+# 3.11 matches the Databricks Apps runtime; keep in sync with .github/workflows/ci.yml.
+requires-python = ">=3.11,<3.12"
+keywords = [
+  "apple-health", "healthkit", "lakehouse", "medallion", "duckdb", "databricks",
+  "delta-lake", "streamlit", "pytorch", "quantified-self",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: SQL",
+  "Topic :: Database",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = [
+  "lxml>=6.1",
+  "pyarrow>=26.0",
+  "pandas>=3.0",
+  "duckdb>=1.5",
+  "sqlglot>=30.0",
+  "numpy>=2.4",  # numpy 2.5+ needs Python 3.12; pip picks 2.4.x on 3.11 automatically
+]
+
+[project.optional-dependencies]
+app = ["streamlit>=1.66", "plotly>=7.1", "databricks-sql-connector>=4.6", "databricks-sdk>=0.154"]
+ml = ["torch>=2.14", "scikit-learn>=1.9", "scipy>=1.17", "matplotlib>=3.11", "transformers>=5.20", "huggingface_hub>=2.2", "chronos-forecasting>=2.3", "tabulate>=0.10"]
+dev = ["pytest>=9.1", "pyyaml>=6.0", "jsonschema>=4.26", "ruff>=0.17", "pre-commit>=4.7"]
+spark = ["pyspark>=4.2", "delta-spark>=4.4"]
+
+[build-system]
+requires = ["hatchling>=1.27"]  # 1.27+ understands the SPDX `license` field
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/health_lakehouse"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+  # PySpark 4.2 vs pandas 3 deprecation noise
+  "ignore:::pyspark.*",
+  "ignore:DataFrame is highly fragmented",
+]
+
+[project.scripts]
+health-lakehouse = "health_lakehouse.cli:main"
+health-pipeline = "health_lakehouse.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/messeb/py-apple-health-data-pipeline"
+Documentation = "https://github.com/messeb/py-apple-health-data-pipeline#readme"
+Repository = "https://github.com/messeb/py-apple-health-data-pipeline"
+Issues = "https://github.com/messeb/py-apple-health-data-pipeline/issues"
+Changelog = "https://github.com/messeb/py-apple-health-data-pipeline/blob/main/CHANGELOG.md"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+# app/ modules (data, ui, charts) are imported as top-level modules; mark them first-party so
+# import sorting doesn't depend on whether a local data/ folder exists.
+src = [".", "app"]
+extend-exclude = ["apple_health_export", "data", "sample_data", "hf_cache", ".cache", ".databricks"]
+
+[tool.ruff.lint]
+select = [
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "I",   # isort
+  "B",   # bugbear
+  "UP",  # pyupgrade
+  "SIM", # simplify
+  "RUF", # ruff-specific
+]
+ignore = [
+  "E501",   # line length is the formatter's job
+  "RUF001", # ambiguous unicode in strings: German/medical labels (µ, ·, –) are intentional
+  "RUF002",
+  "RUF003",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["health_lakehouse", "healthml"]
+
+[tool.ruff.lint.per-file-ignores]
+# Databricks notebooks: `spark`, `dbutils`, `display` are injected globals, `# MAGIC %run` defines
+# names in other cells, and imports follow widget/sys.path setup cells.
+"databricks/notebooks/**/*.py" = ["F821", "F811", "E402", "I001"]
+# Scripts and ML entry points put the repo on sys.path before importing.
+"scripts/*.py" = ["E402"]
+"ml/run_all.py" = ["E402"]
+"app/**/*.py" = ["E402"]
+"tests/**/*.py" = ["E402", "B011", "SIM117"]

@@ -1,0 +1,179 @@
+# Databricks Asset Bundle for the Apple Health Data Pipeline.
+#
+#   databricks bundle deploy -t dev
+#   databricks bundle run -t dev health_pipeline
+#   databricks bundle run -t dev health_app
+#
+# See docs/databricks.md for the full walkthrough (auth, data upload, grants).
+
+bundle:
+  name: health_data_pipeline
+
+# Everything at the repo root is synced to the workspace (src/, databricks/, ml/, app/,
+# scripts/, tests/) except raw data, local outputs and caches.
+sync:
+  exclude:
+    - apple_health_export/**
+    - data/**
+    - .venv/**
+    - hf_cache/**
+    - .cache/**
+    - ml/reports/**
+    - "**/__pycache__/**"
+    - "**/*.parquet"
+    - "**/*.duckdb"
+    - "**/.DS_Store"
+    - .pytest_cache/**
+
+variables:
+  catalog:
+    description: Unity Catalog catalog that holds the schema
+    default: workspace
+  schema:
+    description: Schema for all bronze/silver/gold/ml tables and the raw volume
+    default: health
+  volume:
+    description: Managed volume (inside the schema) for the raw export
+    default: raw
+  timezone:
+    description: IANA timezone for local dates and hours, or `auto` (most common HKTimeZone in the export)
+    default: auto
+  warehouse_id:
+    description: SQL warehouse the Lakeview dashboard and the app query. Override with --var warehouse_id=<id>.
+    lookup:
+      warehouse: Serverless Starter Warehouse
+  mlflow_experiment:
+    description: MLflow experiment for the ML notebooks
+    default: /Shared/health_ml
+
+targets:
+  dev:
+    mode: development # resources get a "[dev <user>]" prefix, schedules are paused
+    default: true
+    # No workspace.host on purpose: the CLI takes it from DATABRICKS_HOST or your auth profile
+    # (`databricks auth login --host <url>`, then `-p <profile>` or DATABRICKS_CONFIG_PROFILE).
+
+  prod:
+    mode: production
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    run_as:
+      user_name: ${workspace.current_user.userName}
+
+resources:
+  jobs:
+    health_pipeline:
+      name: health_pipeline
+      description: Apple Health export -> bronze -> silver -> gold -> data quality -> ML experiments
+      max_concurrent_runs: 1
+      timeout_seconds: 10800
+      queue:
+        enabled: true
+      email_notifications:
+        on_failure:
+          - ${workspace.current_user.userName}
+
+      # Pushed down to every notebook as widget values.
+      parameters:
+        - name: catalog
+          default: ${var.catalog}
+        - name: schema
+          default: ${var.schema}
+        - name: volume
+          default: ${var.volume}
+        - name: timezone
+          default: ${var.timezone}
+        - name: mlflow_experiment
+          default: ${var.mlflow_experiment}
+
+      # Compute: no cluster is specified, so every task runs on serverless jobs compute.
+      # Notebook tasks on serverless cannot use job `environments` (environment_key is only for
+      # Python script / wheel / dbt tasks), so each notebook installs what it needs with %pip:
+      # 01_bronze installs lxml, the ML notebooks install torch / scikit-learn.
+      tasks:
+        - task_key: setup
+          notebook_task:
+            notebook_path: ./databricks/notebooks/00_setup.py
+
+        - task_key: bronze
+          depends_on:
+            - task_key: setup
+          notebook_task:
+            notebook_path: ./databricks/notebooks/01_bronze.py
+
+        - task_key: silver
+          depends_on:
+            - task_key: bronze
+          notebook_task:
+            notebook_path: ./databricks/notebooks/02_silver.py
+
+        - task_key: gold
+          depends_on:
+            - task_key: silver
+          notebook_task:
+            notebook_path: ./databricks/notebooks/03_gold.py
+
+        - task_key: data_quality
+          depends_on:
+            - task_key: gold
+          notebook_task:
+            notebook_path: ./databricks/notebooks/04_data_quality.py
+
+        # ML experiments (databricks/notebooks/ml/): independent of each other, so they run in
+        # parallel once the data quality gate has passed. Each logs to MLflow; 10-13 write ml_* tables.
+        - task_key: ml_forecast_resting_hr
+          depends_on:
+            - task_key: data_quality
+          notebook_task:
+            notebook_path: ./databricks/notebooks/ml/10_ml_forecast_resting_hr.py
+
+        - task_key: ml_daily_anomalies
+          depends_on:
+            - task_key: data_quality
+          notebook_task:
+            notebook_path: ./databricks/notebooks/ml/11_ml_daily_anomalies.py
+
+        - task_key: ml_day_clusters
+          depends_on:
+            - task_key: data_quality
+          notebook_task:
+            notebook_path: ./databricks/notebooks/ml/12_ml_day_clusters.py
+
+        - task_key: ml_ecg_beat_anomalies
+          depends_on:
+            - task_key: data_quality
+          notebook_task:
+            notebook_path: ./databricks/notebooks/ml/13_ml_ecg_beat_anomalies.py
+
+        - task_key: ml_classify_workouts_insights
+          depends_on:
+            - task_key: data_quality
+          notebook_task:
+            notebook_path: ./databricks/notebooks/ml/14_ml_classify_workouts_insights.py
+
+      # Optional nightly refresh after re-uploading the export (paused in dev mode).
+      # schedule:
+      #   quartz_cron_expression: "0 0 5 * * ?"
+      #   timezone_id: UTC  # a literal zone: var.timezone may be `auto`, which the scheduler does not accept
+
+  # Lakeview (AI/BI) dashboard on the gold tables. Its queries use unqualified table names;
+  # dataset_catalog/dataset_schema point them at ${var.catalog}.${var.schema}.
+  dashboards:
+    health_overview:
+      display_name: Health Overview
+      file_path: ./databricks/dashboards/health.lvdash.json
+      warehouse_id: ${var.warehouse_id}
+      dataset_catalog: ${var.catalog}
+      dataset_schema: ${var.schema}
+
+  apps:
+    health_app:
+      name: health-app
+      description: Streamlit app on the gold tables
+      source_code_path: ./app
+      resources:
+        - name: sql-warehouse
+          description: SQL warehouse used to query the gold tables
+          sql_warehouse:
+            id: ${var.warehouse_id}
+            permission: CAN_USE

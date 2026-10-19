@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using these metadata.
+type: software
+title: "Apple Health Data Pipeline: export to a bronze/silver/gold lakehouse, Lakeview dashboard, Streamlit app and PyTorch ML"
+abstract: >-
+  Turns an Apple Health export into a medallion lakehouse that runs locally on DuckDB or on
+  Databricks from the same SQL files, with a Streamlit app and PyTorch ML experiments.
+authors:
+  - alias: messeb
+license: MIT
+version: 0.1.0
+date-released: "2026-10-19"
+repository-code: "https://github.com/messeb/py-apple-health-data-pipeline"
+keywords:
+  - apple health
+  - healthkit
+  - lakehouse
+  - duckdb
+  - databricks
+  - pytorch

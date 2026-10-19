@@ -1,0 +1,27 @@
+# Normalize line endings
+* text=auto eol=lf
+*.sh text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.parquet binary
+
+# Linguist
+docs/** linguist-documentation
+databricks/notebooks/** linguist-detectable=true
+*.lvdash.json linguist-generated
+
+# Keep CI and tests out of `git archive` downloads
+.github/ export-ignore
+tests/ export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+.pre-commit-config.yaml export-ignore
+.devcontainer/ export-ignore

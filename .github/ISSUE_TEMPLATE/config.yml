@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and ideas
+    url: https://github.com/messeb/py-apple-health-data-pipeline/discussions
+    about: Ask questions, share what you built and discuss ideas.
+  - name: Report a security vulnerability
+    url: https://github.com/messeb/py-apple-health-data-pipeline/security/advisories/new
+    about: Please report security problems privately, not as an issue.

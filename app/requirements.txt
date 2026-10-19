@@ -1,0 +1,11 @@
+# Runtime dependencies of the Databricks App. The Apps runtime is Python 3.11, so only
+# lower bounds are given and pip picks the newest versions that support it.
+# Streamlit 1.50+ is needed for [theme.light]/[theme.dark], st.badge and metric sparklines.
+streamlit>=1.66
+plotly>=7.1
+pandas>=3.0
+numpy>=2.4
+pyarrow>=26.0
+databricks-sql-connector>=4.6
+databricks-sdk>=0.154
+# duckdb is only needed for the local backend (imported lazily), so it is not listed.
