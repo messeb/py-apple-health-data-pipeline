@@ -1,0 +1,416 @@
+databricks/notebooks/ml/10_ml_forecast_resting_hr.py
+  s_b9faf990dda4aa::t_c536a06337ce19 14-33
+  s_b9faf990dda4aa::t_4a746d35db7b98 1-13,34-103
+docs/getting-started.md
+  s_b9faf990dda4aa::t_c084cb976ff5ff 3,28-31,44,80,86,94
+  s_b9faf990dda4aa::t_c536a06337ce19 26,68-77
+  s_b9faf990dda4aa::t_b5a70c7c9ea7a4 23
+  s_b9faf990dda4aa::t_fa54195a88aa77 34,83
+  s_b9faf990dda4aa::t_abe2ed3723801d 27
+  s_b9faf990dda4aa::t_6122576753342b 37,88
+  s_b9faf990dda4aa::t_77ce1f74e22239 13,62
+  s_b9faf990dda4aa::t_2b1c13ff67399b 1,5,19,47,97-113
+  s_b9faf990dda4aa::t_c352c0eea33986 2,4,6-12,14-18,20-22,24-25,32-33,35-36,38-43,45-46,48-61,63-67,78-79,81-82,84-85,87,89-93,95-96
+databricks/notebooks/03_gold.py
+  s_b9faf990dda4aa::t_c084cb976ff5ff 6
+  s_b9faf990dda4aa::t_cf3e1cde64cfcb 1-5,7-21
+app/data.py
+  s_b9faf990dda4aa::t_c084cb976ff5ff 1-416
+CHANGELOG.md
+  s_b9faf990dda4aa::t_c536a06337ce19 13,48-49
+  s_b9faf990dda4aa::t_c084cb976ff5ff 33
+  s_b9faf990dda4aa::t_37b973f40844b6 26
+  s_b9faf990dda4aa::t_fa54195a88aa77 35
+  s_b9faf990dda4aa::t_b3d3471cefb44c 27-28
+  s_b9faf990dda4aa::t_32fd5feafd4b76 1-12,14-25,29-32,34,36-47
+ml/healthml/experiments/clustering.py
+  s_b9faf990dda4aa::t_c084cb976ff5ff 5
+  s_b9faf990dda4aa::t_c85d847ea51538 1-4,6-273
+CONTRIBUTING.md
+  s_b9faf990dda4aa::t_cd14fb90442775 90
+  s_b9faf990dda4aa::t_b5a70c7c9ea7a4 14,26
+  s_b9faf990dda4aa::t_37b973f40844b6 40,42
+  s_b9faf990dda4aa::t_c536a06337ce19 1
+  s_b9faf990dda4aa::t_abe2ed3723801d 30
+  s_b9faf990dda4aa::t_fa54195a88aa77 18,27,88
+  s_b9faf990dda4aa::t_c084cb976ff5ff 8,34,41,65,69-87,113
+  s_b9faf990dda4aa::t_2b1c13ff67399b 12,32-33,36,51,67,92-107,115
+  s_b9faf990dda4aa::t_77ce1f74e22239 3
+  s_b9faf990dda4aa::t_14caba56582d3e 2,4-7,9-11,13,15-17,19-25,28-29,31,35,37-39,43-50,52-64,66,68,89,91,108-112,114,116-118
+.github/PULL_REQUEST_TEMPLATE.md
+  s_b9faf990dda4aa::t_c084cb976ff5ff 9
+  s_b9faf990dda4aa::t_60a6ee69c492cc 1-8,10-25
+docs/app.md
+  s_b9faf990dda4aa::t_fa54195a88aa77 2-4,8,13-19,21-92,94,100,102-120,122-125
+  s_b9faf990dda4aa::t_219599313da099 20
+  s_b9faf990dda4aa::t_54258d98b30856 1,5-7,9-12,93,95-99,101,121
+pyproject.toml
+  s_b9faf990dda4aa::t_fa54195a88aa77 4,38,102
+  s_b9faf990dda4aa::t_abe2ed3723801d 2,60
+  s_b9faf990dda4aa::t_b5a70c7c9ea7a4 9-10
+  s_b9faf990dda4aa::t_c536a06337ce19 63-67
+  s_b9faf990dda4aa::t_385f445c6ebc18 8
+  s_b9faf990dda4aa::t_0039f27e90ecd9 1,3,5-7,11-37,39-59,61-62,68-101,103
+docs/ml.md
+  s_b9faf990dda4aa::t_c084cb976ff5ff 20,29,31-34,187
+  s_b9faf990dda4aa::t_c536a06337ce19 23
+  s_b9faf990dda4aa::t_2b1c13ff67399b 1,10,25,40,59,75,101,110,125,141,156,169,184,190
+  s_b9faf990dda4aa::t_cee49de93240d4 42-43,52,112-114
+  s_b9faf990dda4aa::t_0aff25b6620da9 3-8,21-22,24,26-28,30,35-39,41,44-51,53-58,60-74,76-100,102-109,111,115-124,126-140,142-155,158-167,171-183,185-186,188,195-203
+  s_b9faf990dda4aa::t_36dcd6bdf3461c 2,9,11-19,157,168,170,189,191-194,204-207
+.github/ISSUE_TEMPLATE/bug_report.yml
+  s_b9faf990dda4aa::t_b5a70c7c9ea7a4 82
+  s_b9faf990dda4aa::t_c084cb976ff5ff 9-53
+  s_b9faf990dda4aa::t_decbd610001cdc 1-8,54-81,83-101
+.github/workflows/ci.yml
+  s_b9faf990dda4aa::t_c084cb976ff5ff 2
+  s_b9faf990dda4aa::t_b5a70c7c9ea7a4 44
+  s_b9faf990dda4aa::t_eb22a178c926aa 1,3-40,45-50
+  s_b9faf990dda4aa::t_d24b19c3037994 41-43
+docs/data-model.md
+  s_b9faf990dda4aa::t_c084cb976ff5ff 107
+  s_b9faf990dda4aa::t_2b1c13ff67399b 1-100
+  s_b9faf990dda4aa::t_421eb525d8c83c 101-106,108-109
+ml/healthml/__init__.py
+  s_b9faf990dda4aa::t_b3d3471cefb44c 1
+databricks/notebooks/ml/11_ml_daily_anomalies.py
+  s_b9faf990dda4aa::t_c536a06337ce19 10-25
+  s_b9faf990dda4aa::t_4a743e45d85bec 1-9,26-85
+README.md
+  s_b9faf990dda4aa::t_c536a06337ce19 10,146
+  s_b9faf990dda4aa::t_77ce1f74e22239 47
+  s_b9faf990dda4aa::t_abe2ed3723801d 102
+  s_b9faf990dda4aa::t_1651ec25bd1f0c 154
+  s_b9faf990dda4aa::t_26609ccb9a8dfa 182-184
+  s_b9faf990dda4aa::t_cee49de93240d4 86-89
+  s_b9faf990dda4aa::t_fa54195a88aa77 65
+  s_b9faf990dda4aa::t_b5a70c7c9ea7a4 12,67
+  s_b9faf990dda4aa::t_1fcdd954f6381b 5-6,18,20,26,50,81-84,107,124-125,148,165
+  s_b9faf990dda4aa::t_d6000be0bcd3f0 56-62,64,66,68,74-75,106,143-145,147,151,187-190
+  s_b9faf990dda4aa::t_e0f30bcf6f1181 152-153,155-157
+  s_b9faf990dda4aa::t_2b1c13ff67399b 17,19,21,55,114-117,136-138,158-164,166-167,169
+  s_b9faf990dda4aa::t_6122576753342b 69-72
+  s_b9faf990dda4aa::t_37b973f40844b6 63,80,168
+  s_b9faf990dda4aa::t_20f70ecbacd034 1-2,7-9,11,13-16,22-25,27-46,48-49,51-54,73,76-79,85,90-101,103-105,108-113,118-123,126-135,139-142,149-150,170-181,185-186,191-195
+databricks/notebooks/ml/14_ml_classify_workouts_insights.py
+  s_b9faf990dda4aa::t_c536a06337ce19 10-25
+  s_b9faf990dda4aa::t_e92cadf36a6ef3 1-9,26-82
+.devcontainer/devcontainer.json
+  s_b9faf990dda4aa::t_abe2ed3723801d 4
+  s_b9faf990dda4aa::t_fa54195a88aa77 12
+  s_b9faf990dda4aa::t_b5a70c7c9ea7a4 2,5
+  s_b9faf990dda4aa::t_30ed25e6dfd11d 1,3,6-11,13-23
+docs/troubleshooting.md
+  s_b9faf990dda4aa::t_c084cb976ff5ff 12-13
+  s_b9faf990dda4aa::t_77ce1f74e22239 10
+  s_b9faf990dda4aa::t_2b1c13ff67399b 14-22
+  s_b9faf990dda4aa::t_d4d50029da67f0 23-30
+  s_b9faf990dda4aa::t_abe2ed3723801d 7
+  s_b9faf990dda4aa::t_26fe52c6edc309 1-6,8-9,11,31-33
+scripts/run_notebooks_locally.py
+  s_b9faf990dda4aa::t_c536a06337ce19 83-85
+  s_b9faf990dda4aa::t_402e35bc9bbd98 1-82,86-102
+app/app.py
+  s_b9faf990dda4aa::t_fa54195a88aa77 2-59
+  s_b9faf990dda4aa::t_c084cb976ff5ff 1
+.github/dependabot.yml
+  s_b9faf990dda4aa::t_3cf09757b3469c 1-25,32-36,38-40,42-44,46-56,58
+  s_b9faf990dda4aa::t_c084cb976ff5ff 37,41,45
+  s_b9faf990dda4aa::t_fa54195a88aa77 27-29
+  s_b9faf990dda4aa::t_29b9ce0ab3a316 26,30-31,57
+.gitignore
+  s_b9faf990dda4aa::t_fa54195a88aa77 44
+  s_b9faf990dda4aa::t_9d725d0cce5e44 1-43,45-71
+.github/ISSUE_TEMPLATE/config.yml
+  s_b9faf990dda4aa::t_c536a06337ce19 4-7
+  s_b9faf990dda4aa::t_f889375df3d8cb 1-3,8
+.github/CODEOWNERS
+  s_b9faf990dda4aa::t_3cf09757b3469c 1-2
+CONTRIBUTORS.md
+  s_b9faf990dda4aa::t_3cf09757b3469c 1-11
+scripts/validate_spark_sql.py
+  s_b9faf990dda4aa::t_37b973f40844b6 14
+  s_b9faf990dda4aa::t_6d16ba041b14f9 1-13,15-459
+Makefile
+  s_b9faf990dda4aa::t_c93fb705e8e2c4 57,59
+  s_b9faf990dda4aa::t_c084cb976ff5ff 50,87
+  s_b9faf990dda4aa::t_fa54195a88aa77 20-44,58,88
+  s_b9faf990dda4aa::t_c536a06337ce19 1,85
+  s_b9faf990dda4aa::t_b5a70c7c9ea7a4 5
+  s_b9faf990dda4aa::t_2f245a5c754b92 2-4,6-19,45-49,51-56,60-84,86,89-94
+app/app.yaml
+  s_b9faf990dda4aa::t_fa54195a88aa77 1-22
+databricks/notebooks/ml/13_ml_ecg_beat_anomalies.py
+  s_b9faf990dda4aa::t_c536a06337ce19 10-25
+  s_b9faf990dda4aa::t_9b2614032b41b8 1-9,26-85
+ml/healthml/sources.py
+  s_b9faf990dda4aa::t_7b2c6dce38e85a 39
+  s_b9faf990dda4aa::t_91a48fdc95459c 1-38,40-55
+CITATION.cff
+  s_b9faf990dda4aa::t_385f445c6ebc18 9
+  s_b9faf990dda4aa::t_c084cb976ff5ff 4
+  s_b9faf990dda4aa::t_c536a06337ce19 13
+  s_b9faf990dda4aa::t_fa54195a88aa77 7
+  s_b9faf990dda4aa::t_e1098d6423bc43 1-3,5-6,8,10-12,14-20
+docs/privacy.md
+  s_b9faf990dda4aa::t_48a55bbe818f84 23-41
+  s_b9faf990dda4aa::t_fa54195a88aa77 45
+  s_b9faf990dda4aa::t_c084cb976ff5ff 48
+  s_b9faf990dda4aa::t_2b1c13ff67399b 6
+  s_b9faf990dda4aa::t_77ce1f74e22239 3,9
+  s_b9faf990dda4aa::t_cc8bbcdfc5d1d6 1-2,4-5,7-8,10-22,42-44,46-47,49-53
+databricks/notebooks/00_setup.py
+  s_b9faf990dda4aa::t_37ded4cbb5dc33 25-28,31
+  s_b9faf990dda4aa::t_db94ed0a9b4088 1-24,29-30,32-94
+databricks/dashboards/health.lvdash.json
+  s_b9faf990dda4aa::t_e54af602c9148d 1-2496
+tests/conftest.py
+  s_b9faf990dda4aa::t_c084cb976ff5ff 5
+  s_b9faf990dda4aa::t_022fe367d5341d 1-4,6-65
+databricks/notebooks/_common.py
+  s_b9faf990dda4aa::t_c536a06337ce19 16
+  s_b9faf990dda4aa::t_164c564b3751df 1-15,17-63
+databricks/notebooks/01_bronze.py
+  s_b9faf990dda4aa::t_c536a06337ce19 49-59
+  s_b9faf990dda4aa::t_2789848c089375 1-48,60-95
+SUPPORT.md
+  s_b9faf990dda4aa::t_2b1c13ff67399b 6,8,10,12
+  s_b9faf990dda4aa::t_3cf09757b3469c 1-5,7,9,11,13-21
+.github/ISSUE_TEMPLATE/feature_request.yml
+  s_b9faf990dda4aa::t_c084cb976ff5ff 21-33
+  s_b9faf990dda4aa::t_8ceb5ac536c33a 1-20,34-46
+src/health_lakehouse/sql/gold/gold_daily_summary.sql
+  s_b9faf990dda4aa::t_c084cb976ff5ff 1
+  s_b9faf990dda4aa::t_8ebb84f684b35d 2-33
+tests/test_bundle.py
+  s_b9faf990dda4aa::t_c536a06337ce19 17
+  s_b9faf990dda4aa::t_fa54195a88aa77 62
+  s_b9faf990dda4aa::t_0857c0b776fb91 1-16,18-61,63-97
+tests/test_lakeview_dashboard.py
+  s_b9faf990dda4aa::t_be96e45592ee25 1-58
+app/.streamlit/config.toml
+  s_b9faf990dda4aa::t_720b345f9f4180 1-41
+.github/release.yml
+  s_b9faf990dda4aa::t_3cf09757b3469c 1-18
+src/health_lakehouse/sample.py
+  s_b9faf990dda4aa::t_c084cb976ff5ff 12
+  s_b9faf990dda4aa::t_5419201717eb87 1-11,13-1357
+LICENSE
+  h_a51360f058d7fc 3
+  s_b9faf990dda4aa::t_67b72b028ea449 1-2,4-21
+databricks.yml
+  s_b9faf990dda4aa::t_37b973f40844b6 7
+  s_b9faf990dda4aa::t_fa54195a88aa77 5,12,42,170-173
+  s_b9faf990dda4aa::t_e54af602c9148d 1,158-167
+  s_b9faf990dda4aa::t_c536a06337ce19 4,10,34,47-66
+  s_b9faf990dda4aa::t_f27c1f3c807c8e 2-3,6,8-9,11,13-33,35-41,43-46,67-157,168-169,174-179
+docs/architecture.md
+  s_b9faf990dda4aa::t_c084cb976ff5ff 76-79,95
+  s_b9faf990dda4aa::t_abe2ed3723801d 91
+  s_b9faf990dda4aa::t_2b1c13ff67399b 25-40,53-70,81
+  s_b9faf990dda4aa::t_77ce1f74e22239 3
+  s_b9faf990dda4aa::t_37b973f40844b6 50-51
+  s_b9faf990dda4aa::t_fa54195a88aa77 19,92-93
+  s_b9faf990dda4aa::t_d4d50029da67f0 20
+  s_b9faf990dda4aa::t_4bc2585ad7f9d7 1-2,4-18,21-24,41-49,52,71-75,80,82-90,94,96
+.gitattributes
+  s_b9faf990dda4aa::t_3cf09757b3469c 1-27
+src/health_lakehouse/cli.py
+  s_b9faf990dda4aa::t_fa54195a88aa77 79
+  s_b9faf990dda4aa::t_788d4a93cda814 85
+  s_b9faf990dda4aa::t_c084cb976ff5ff 78
+  s_b9faf990dda4aa::t_4a9c1b40f77bfa 1-77,80-84,86-120
+ml/healthml/experiments/classify.py
+  s_b9faf990dda4aa::t_07650c8193d530 3-4
+  s_b9faf990dda4aa::t_d7e266e4d038ce 1-2,5-116
+databricks/notebooks/ml/12_ml_day_clusters.py
+  s_b9faf990dda4aa::t_c536a06337ce19 10-25
+  s_b9faf990dda4aa::t_ca0d8aef712edd 1-9,26-83
+SECURITY.md
+  s_b9faf990dda4aa::t_c536a06337ce19 16
+  s_b9faf990dda4aa::t_77ce1f74e22239 5
+  s_b9faf990dda4aa::t_2b1c13ff67399b 1-3,12,36
+  s_b9faf990dda4aa::t_48a55bbe818f84 38-41
+  s_b9faf990dda4aa::t_c084cb976ff5ff 20-31
+  s_b9faf990dda4aa::t_e567a25e927e43 4,6-11,13-15,17-19,32-35,37
+tests/test_app.py
+  s_b9faf990dda4aa::t_720b345f9f4180 1-360
+docs/databricks.md
+  s_b9faf990dda4aa::t_1651ec25bd1f0c 4,6-8
+  s_b9faf990dda4aa::t_abe2ed3723801d 14
+  s_b9faf990dda4aa::t_d4d50029da67f0 3,128,266,272,290,333-343,363
+  s_b9faf990dda4aa::t_e0f30bcf6f1181 5
+  s_b9faf990dda4aa::t_078b2e9b4f1bea 27
+  s_b9faf990dda4aa::t_2b1c13ff67399b 1,31,62-103,133,146-150,164,187,235,287,307-321,347
+  s_b9faf990dda4aa::t_408973c6b64bb4 217-219
+  s_b9faf990dda4aa::t_c536a06337ce19 13,22,120,127,136-142,155,170-179,190-211,220-228,294,328-331,356
+  s_b9faf990dda4aa::t_fa54195a88aa77 38,119,269,274
+  s_b9faf990dda4aa::t_5f8b38f7131da1 12,15,29,48,52,56,60,105,108,113,115,121,129,131,135,144,154,162,169,180,185,189,212,233,237-265,267-268,270,276,279,285,295,302,305,345,349-351,357,359
+  s_b9faf990dda4aa::t_237850b93558d9 2,9-11,16-21,23-26,28,30,32-37,39-47,49-51,53-55,57-59,61,104,106-107,109-112,114,116-118,122-126,130,132,134,143,145,151-153,156-161,163,165-168,181-184,186,188,213-216,229-232,234,236,271,273,275,277-278,280-284,286,288-289,291-293,296-301,303-304,306,322-327,332,344,346,348,352-355,358,360-362
+ml/healthml/config.py
+  s_b9faf990dda4aa::t_c084cb976ff5ff 3
+  s_b9faf990dda4aa::t_d9b633b5ee1251 1-2,4-128
+.editorconfig
+  s_b9faf990dda4aa::t_b7a760c900c3e6 1-19
+.pre-commit-config.yaml
+  s_b9faf990dda4aa::t_64bb2524469b0d 1-38
+.streamlit/config.toml
+  s_b9faf990dda4aa::t_f3fd05c6b4b2c0 1
+CODE_OF_CONDUCT.md
+  s_b9faf990dda4aa::t_1bdcf75e01cce1 1-83
+app/charts.py
+  s_b9faf990dda4aa::t_79ef6193737413 1-279
+app/ui.py
+  s_b9faf990dda4aa::t_e85850aac969e2 1-137
+app/views/activity.py
+  s_b9faf990dda4aa::t_84311732b409a7 1-156
+app/views/body.py
+  s_b9faf990dda4aa::t_771acf604ccfbc 1-119
+app/views/ecg.py
+  s_b9faf990dda4aa::t_1956f09fbe670d 1-195
+app/views/heart.py
+  s_b9faf990dda4aa::t_596611111ed43b 1-137
+app/views/ml.py
+  s_b9faf990dda4aa::t_3c429c41b5bac1 1-792
+app/views/overview.py
+  s_b9faf990dda4aa::t_5e6280e26a4b76 1-203
+app/views/sleep.py
+  s_b9faf990dda4aa::t_024aee245d63e3 1-152
+app/views/workouts.py
+  s_b9faf990dda4aa::t_d298b177121579 1-279
+databricks/notebooks/02_silver.py
+  s_b9faf990dda4aa::t_ea4f40dc6e5a57 1-29
+ml/healthml/data.py
+  s_b9faf990dda4aa::t_88bfb296f42140 1-179
+ml/healthml/databricks_utils.py
+  s_b9faf990dda4aa::t_ba415a9eddb22c 1-25
+ml/healthml/ecg.py
+  s_b9faf990dda4aa::t_d4113251137b4f 1-81
+ml/healthml/experiments/anomaly.py
+  s_b9faf990dda4aa::t_ae499f89cad444 1-303
+ml/healthml/experiments/ecg_cnn.py
+  s_b9faf990dda4aa::t_b84af8429efd07 1-201
+ml/healthml/experiments/forecast.py
+  s_b9faf990dda4aa::t_99625fcfcd9e72 1-328
+ml/healthml/experiments/insights.py
+  s_b9faf990dda4aa::t_fb657375ded8f6 1-155
+ml/healthml/experiments/workouts.py
+  s_b9faf990dda4aa::t_48cded7401d6f3 1-156
+ml/healthml/models.py
+  s_b9faf990dda4aa::t_db04dc0f6b92c4 1-176
+ml/healthml/outputs.py
+  s_b9faf990dda4aa::t_783fc869aead48 1-56
+ml/healthml/tracking.py
+  s_b9faf990dda4aa::t_bdf733eaad8365 1-70
+ml/run_all.py
+  s_b9faf990dda4aa::t_41818b3a60f246 1-267
+scripts/check_no_health_data.py
+  s_b9faf990dda4aa::t_cbae1b9b92704c 1-228
+src/health_lakehouse/bronze/export_xml.py
+  s_b9faf990dda4aa::t_8559c894caa54e 1-279
+src/health_lakehouse/bronze/side_files.py
+  s_b9faf990dda4aa::t_00353a998e559d 1-139
+src/health_lakehouse/pipeline.py
+  s_b9faf990dda4aa::t_4fef497f201281 1-120
+src/health_lakehouse/quality.py
+  s_b9faf990dda4aa::t_003106aded7020 1-126
+src/health_lakehouse/sql/gold/gold_daily_activity.sql
+  s_b9faf990dda4aa::t_74543c35c58746 1-16
+src/health_lakehouse/sql/gold/gold_daily_sleep.sql
+  s_b9faf990dda4aa::t_642993e2455c92 1-33
+src/health_lakehouse/sql/gold/gold_daily_vitals.sql
+  s_b9faf990dda4aa::t_6331ac7fc36e60 1-31
+src/health_lakehouse/sql/gold/gold_daily_workouts.sql
+  s_b9faf990dda4aa::t_75c9b21fcf8d80 1-15
+src/health_lakehouse/sql/gold/gold_ecg_summary.sql
+  s_b9faf990dda4aa::t_0dbd5b5e8cc3e9 1-17
+src/health_lakehouse/sql/gold/gold_hourly_activity.sql
+  s_b9faf990dda4aa::t_5297e42539d62b 1-39
+src/health_lakehouse/sql/gold/gold_hourly_heart_rate.sql
+  s_b9faf990dda4aa::t_bd06b448fe6ac1 1-12
+src/health_lakehouse/sql/gold/gold_weekly_summary.sql
+  s_b9faf990dda4aa::t_00a362141c5447 1-20
+src/health_lakehouse/sql/gold/gold_workouts.sql
+  s_b9faf990dda4aa::t_6f738c8fb378b0 1-50
+src/health_lakehouse/sql/silver/silver_activity_summaries.sql
+  s_b9faf990dda4aa::t_0d945117aa6341 1-17
+src/health_lakehouse/sql/silver/silver_clinical_records.sql
+  s_b9faf990dda4aa::t_3ef1fe1039ae40 1-11
+src/health_lakehouse/sql/silver/silver_ecg_readings.sql
+  s_b9faf990dda4aa::t_973f7dcd37fe36 1-15
+src/health_lakehouse/sql/silver/silver_ecg_samples.sql
+  s_b9faf990dda4aa::t_f58ac3907dda3d 1-6
+src/health_lakehouse/sql/silver/silver_hrv_beats.sql
+  s_b9faf990dda4aa::t_fcaa2f4335a76f 1-10
+src/health_lakehouse/sql/silver/silver_profile.sql
+  s_b9faf990dda4aa::t_17cca87d1a97c5 1-5
+src/health_lakehouse/sql/silver/silver_records.sql
+  s_b9faf990dda4aa::t_56f1218f04f729 1-71
+src/health_lakehouse/sql/silver/silver_route_points.sql
+  s_b9faf990dda4aa::t_932a1dba054bc8 1-13
+src/health_lakehouse/sql/silver/silver_sleep_segments.sql
+  s_b9faf990dda4aa::t_a07d7f956fa938 1-22
+src/health_lakehouse/sql/silver/silver_workout_events.sql
+  s_b9faf990dda4aa::t_ae7caf19f17ed1 1-15
+src/health_lakehouse/sql/silver/silver_workout_statistics.sql
+  s_b9faf990dda4aa::t_d9927b26c3f6e3 1-15
+src/health_lakehouse/sql/silver/silver_workouts.sql
+  s_b9faf990dda4aa::t_db5777459c186c 1-77
+src/health_lakehouse/sql_compat.py
+  s_b9faf990dda4aa::t_897837d5d75135 1-57
+src/health_lakehouse/timezone.py
+  s_b9faf990dda4aa::t_3d767fdacac2de 1-156
+tests/test_bronze.py
+  s_b9faf990dda4aa::t_cb04da4bebab80 1-162
+tests/test_ml.py
+  s_b9faf990dda4aa::t_88894ea06eba97 1-193
+tests/test_privacy_guard.py
+  s_b9faf990dda4aa::t_e4cb6f8c8275a9 1-137
+tests/test_sample.py
+  s_b9faf990dda4aa::t_0d936357e75b05 1-219
+tests/test_spark_sql.py
+  s_b9faf990dda4aa::t_d09ed53cda1252 1-136
+tests/test_sql_compat.py
+  s_b9faf990dda4aa::t_a18721b197fd7e 1-164
+tests/test_timezone.py
+  s_b9faf990dda4aa::t_818904f91cc1b6 1-112
+app/requirements.txt
+  h_a51360f058d7fc 1-11
+databricks/notebooks/04_data_quality.py
+  h_a51360f058d7fc 1-40
+ml/healthml/evaluation.py
+  h_a51360f058d7fc 1-62
+ml/healthml/plotting.py
+  h_a51360f058d7fc 1-52
+ml/healthml/train.py
+  h_a51360f058d7fc 1-102
+src/health_lakehouse/__init__.py
+  h_a51360f058d7fc 1-3
+src/health_lakehouse/bronze/__init__.py
+  h_a51360f058d7fc 1-25
+src/health_lakehouse/bronze/writer.py
+  h_a51360f058d7fc 1-54
+src/health_lakehouse/spark_runner.py
+  h_a51360f058d7fc 1-91
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "426a1b1cd1dca7ffecb819bfe12cf4a2e97d7843",
+  "prompts": {},
+  "humans": {
+    "h_a51360f058d7fc": {
+      "author": "Sebastian Messingfeld <sebastian@messeb.com>"
+    }
+  },
+  "sessions": {
+    "s_b9faf990dda4aa": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "098b3092-7fa6-455c-9f7c-12a166e1fc52",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Sebastian Messingfeld <sebastian@messeb.com>"
+    }
+  }
+}
