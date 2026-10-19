@@ -1,0 +1,24 @@
+app/requirements.txt
+  s_b9faf990dda4aa::t_6f5a47596f0533 3-10
+.github/dependabot.yml
+  s_b9faf990dda4aa::t_76e58e4b98398c 1-3,5-7,11-16,19-22,27-28,31-33,37-38
+  s_b9faf990dda4aa::t_4d8e621991fd01 40
+pyproject.toml
+  s_b9faf990dda4aa::t_6f5a47596f0533 29-34,38-41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "e7bd2319bc304ef621b5f5f5ae7ac368cd999f97",
+  "prompts": {},
+  "sessions": {
+    "s_b9faf990dda4aa": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "098b3092-7fa6-455c-9f7c-12a166e1fc52",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Sebastian Messingfeld <sebastian@messeb.com>"
+    }
+  }
+}
