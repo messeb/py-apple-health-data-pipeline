@@ -1,0 +1,37 @@
+app/views/ecg.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 6,8
+pyproject.toml
+  s_b9faf990dda4aa::t_9de28a6101ce70 72-74
+app/app.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 17
+app/views/ml.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 13,15
+app/views/overview.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 5,7
+app/views/activity.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 5,7
+app/views/body.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 4,6
+app/views/sleep.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 5,7
+app/views/heart.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 5,7
+app/views/workouts.py
+  s_b9faf990dda4aa::t_9de28a6101ce70 9,11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "8e94d16b8691385d6d312169d9ab62771416359b",
+  "prompts": {},
+  "sessions": {
+    "s_b9faf990dda4aa": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "098b3092-7fa6-455c-9f7c-12a166e1fc52",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Sebastian Messingfeld <sebastian@messeb.com>"
+    }
+  }
+}
